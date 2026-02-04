@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura Básica - Brian Aguirre</title>
+    <style>
+        /* Estilos específicos para que el navbar sea horizontal */
+        header nav ul {
+            list-style-type: none; /* Quita los puntos de la lista */
+            padding: 0;
+            margin: 0;
+            display: flex;         /* Alinea los elementos en fila */
+            gap: 5px;             /* Espacio entre cada enlace */
+        }
+
+        /* Estilo opcional para que el nombre del sitio y la lista se vean en la misma línea */
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- El Header contiene la navegación principal -->
+    <header>
+        <nav>
+            <strong>MiSitioWeb</strong>
+            <ul>
+                <li><a href="Index.html">Inicio</a></li>
+                <li><a href="Nosotros.html">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Título principal del documento -->
+        <section id="inicio">
+            <h1>Enseñando Estructura HTML</h1>
+            <p>Esta página mantiene su estructura básica, pero hemos aplicado CSS al navbar para mostrarlo horizontalmente.</p>
+        </section>
+
+        <hr>
+
+        <!-- Sección dedicada a las listas -->
+        <section id="listas">
+            <h2>Tipos de Listas en HTML</h2>
+
+            <h3>1. Lista No Ordenada (ul)</h3>
+            <p>Se usa cuando el orden de los elementos no es relevante. Nota que esta lista sí conserva los puntos porque no tiene estilos.</p>
+            <ul>
+                <li>Pan</li>
+                <li>Leche</li>
+                <li>Huevos</li>
+                <li>Frutas
+                    <ul>
+                        <li>Manzana</li>
+                        <li>Plátano</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2. Lista Ordenada (ol)</h3>
+            <p>Se usa para pasos secuenciales o rankings.</p>
+            <ol>
+                <li>Abrir el editor de código</li>
+                <li>Crear un archivo .html</li>
+                <li>Escribir la estructura básica</li>
+                <li>Abrir en el navegador</li>
+            </ol>
+
+            <h3>3. Lista de Descripción (dl)</h3>
+            <p>Ideal para glosarios o diccionarios.</p>
+            <dl>
+                <dt>HTML</dt>
+                <dd>Lenguaje de marcado para la estructura de la web.</dd>
+                
+                <dt>Navegador</dt>
+                <dd>Software que interpreta el código HTML y lo muestra visualmente.</dd>
+            </dl>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>Página creada por Alison Jocelyn - 2026</p>
+    </footer>
+
+</body>
+</html>
