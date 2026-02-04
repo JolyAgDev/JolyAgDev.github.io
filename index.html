@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Fascinante Mundo de las Tortugas</title>
+    <title>Bitácora de Tortugas - Alison Aguirre</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --diary-paper: #fdfaf0;
+            --pencil-gray: #4a4a4a;
+            --soft-green: #a8dadc;
+            --chibi-pink: #ffb7b2;
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Patrick Hand', cursive;
+            background-color: var(--diary-paper);
+            color: var(--pencil-gray);
             scroll-behavior: smooth;
         }
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
+
+        h1, h2, h3 {
+            font-family: 'Gaegu', cursive;
+            color: #2d5a27;
         }
-        /* Parallax Style */
+
+        /* Parallax Style con efecto de hoja de papel */
         .parallax-section {
             position: relative;
-            height: 60vh;
+            height: 50vh;
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -25,42 +37,68 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-top: 4px dashed #c2b280;
+            border-bottom: 4px dashed #c2b280;
         }
 
         .hero-section {
             height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=2070');
+            background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('https://images.unsplash.com/photo-1590066173983-9b0eb0326078?auto=format&fit=crop&q=80&w=2000');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .parallax-1 {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&q=80&w=2000');
+            background-image: url('https://images.unsplash.com/photo-1454483011928-176880295155?auto=format&fit=crop&q=80&w=2000');
         }
 
         .parallax-2 {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1518467166778-b88f373ffec7?auto=format&fit=crop&q=80&w=2000');
+            background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=2000');
         }
 
-        /* Glassmorphism */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Diseño Chibi/Kawaii */
+        .chibi-card {
+            background: white;
+            border-radius: 40px;
+            border: 3px solid #e8e4d9;
+            box-shadow: 10px 10px 0px #d4ccb0;
+            transition: transform 0.3s ease;
+        }
+
+        .chibi-card:hover {
+            transform: translate(-5px, -5px);
+        }
+
+        .tape-effect {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 100px;
+            height: 30px;
+            background: rgba(168, 218, 220, 0.6);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .floating {
-            animation: float 6s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        /* Mobile specific parallax fix */
+        .notebook-line {
+            border-bottom: 2px solid #e0d9c1;
+            margin-bottom: 0.5rem;
+        }
+
         @media (max-width: 1024px) {
             .parallax-section, .hero-section {
                 background-attachment: scroll;
@@ -68,152 +106,153 @@
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800">
+<body class="overflow-x-hidden">
 
-    <!-- Hero Section -->
-    <header class="hero-section flex items-center justify-center text-center text-white px-4">
-        <div class="max-w-4xl">
-            <h1 class="text-5xl md:text-8xl font-bold mb-6 drop-shadow-2xl">Tortugas</h1>
-            <p class="text-xl md:text-2xl font-light tracking-widest uppercase">Guardianas Ancestrales del Tiempo</p>
-            <div class="mt-10 animate-bounce">
-                <a href="#intro" class="bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full transition-all">
-                    Explorar
-                </a>
+    <!-- Hero: Portada del Diario -->
+    <header class="hero-section text-center px-4 relative">
+        <div class="bg-white/80 backdrop-blur-sm p-10 md:p-20 rounded-[60px] border-4 border-emerald-200 shadow-2xl relative">
+            <div class="tape-effect !w-48 !bg-pink-200/50"></div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">Mi Diario de Tortugas 🐢</h1>
+            <p class="text-2xl md:text-3xl italic text-stone-600">Por: Alison Jocelyn Aguirre Guerra</p>
+            <div class="mt-8">
+                <span class="text-sm uppercase tracking-widest font-bold text-emerald-600">Entrada #01: ¡Hola, mundo marino!</span>
+            </div>
+            <div class="mt-10 animate-bounce cursor-pointer">
+                <a href="#diario" class="text-4xl">👇</a>
             </div>
         </div>
     </header>
 
-    <!-- Intro Section -->
-    <section id="intro" class="py-20 px-6 max-w-5xl mx-auto text-center">
-        <span class="text-emerald-600 font-bold tracking-widest uppercase text-sm">Introducción</span>
-        <h2 class="text-4xl md:text-5xl my-6">Más de 200 millones de años</h2>
-        <p class="text-lg leading-relaxed text-stone-600 mb-8">
-            Las tortugas son uno de los grupos de reptiles más antiguos que existen. Han sobrevivido a cambios climáticos drásticos, extinciones masivas y la evolución de los continentes. Su caparazón, una maravilla de la ingeniería biológica, es parte integral de su esqueleto.
-        </p>
-        <div class="grid md:grid-cols-3 gap-8 mt-16">
-            <div class="p-8 bg-white rounded-3xl shadow-sm border border-stone-100 hover:shadow-xl transition-shadow">
-                <div class="text-emerald-500 text-4xl mb-4">🐢</div>
-                <h3 class="font-bold text-xl mb-2">Longevidad</h3>
-                <p class="text-sm text-stone-500">Algunas especies pueden vivir más de 150 años, superando a casi cualquier otro vertebrado.</p>
-            </div>
-            <div class="p-8 bg-white rounded-3xl shadow-sm border border-stone-100 hover:shadow-xl transition-shadow">
-                <div class="text-emerald-500 text-4xl mb-4">🌊</div>
-                <h3 class="font-bold text-xl mb-2">Adaptabilidad</h3>
-                <p class="text-sm text-stone-500">Desde los desiertos más áridos hasta las profundidades de los océanos tropicales.</p>
-            </div>
-            <div class="p-8 bg-white rounded-3xl shadow-sm border border-stone-100 hover:shadow-xl transition-shadow">
-                <div class="text-emerald-500 text-4xl mb-4">🌍</div>
-                <h3 class="font-bold text-xl mb-2">Navegación</h3>
-                <p class="text-sm text-stone-500">Las marinas utilizan el campo magnético terrestre para migrar miles de kilómetros.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Parallax Divider 1 -->
-    <div class="parallax-section parallax-1">
-        <h2 class="text-white text-4xl md:text-6xl italic font-serif text-center px-4">"El océano es su hogar, la paciencia su virtud."</h2>
-    </div>
-
-    <!-- Species Section -->
-    <section class="py-24 bg-stone-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-end justify-between mb-16">
-                <div>
-                    <span class="text-emerald-600 font-bold tracking-widest uppercase text-sm">Diversidad</span>
-                    <h2 class="text-4xl md:text-5xl mt-2">Principales Familias</h2>
-                </div>
-                <p class="md:max-w-md text-stone-500 mt-4 md:mt-0">
-                    Existen aproximadamente 356 especies de tortugas en todo el mundo, divididas principalmente por su hábitat.
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Marine -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-2xl h-[500px]">
-                    <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=1000" alt="Tortuga Marina" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10 text-white">
-                        <h3 class="text-3xl font-bold mb-4">Tortugas Marinas</h3>
-                        <p class="text-stone-200 line-clamp-3">Nadan grandes distancias y solo tocan tierra para desovar. Poseen aletas en lugar de patas y no pueden retraer su cabeza dentro del caparazón.</p>
-                        <button class="mt-6 w-fit border-b-2 border-emerald-400 pb-1 text-emerald-400 font-bold">Ver más</button>
-                    </div>
-                </div>
-
-                <!-- Land -->
-                <div class="group relative overflow-hidden rounded-3xl shadow-2xl h-[500px]">
-                    <img src="https://images.unsplash.com/photo-1548805214-554486927598?auto=format&fit=crop&q=80&w=1000" alt="Tortuga Terrestre" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10 text-white">
-                        <h3 class="text-3xl font-bold mb-4">Tortugas Terrestres</h3>
-                        <p class="text-stone-200 line-clamp-3">Caracterizadas por patas robustas y caparazones muy abovedados. Son estrictamente herbívoras en su mayoría y famosas por su increíble longevidad.</p>
-                        <button class="mt-6 w-fit border-b-2 border-emerald-400 pb-1 text-emerald-400 font-bold">Ver más</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Parallax Divider 2 -->
-    <div class="parallax-section parallax-2">
-        <div class="glass-card p-12 rounded-3xl max-w-2xl text-center mx-4">
-            <h2 class="text-3xl md:text-4xl mb-6">Un Legado en Peligro</h2>
-            <p class="text-stone-600 leading-relaxed">
-                Hoy en día, muchas especies enfrentan amenazas críticas debido a la contaminación por plásticos, la pérdida de hábitat y el cambio climático. Protegerlas es proteger la historia de nuestro planeta.
+    <!-- Intro: Narrativa de Diario -->
+    <section id="diario" class="py-20 px-6 max-w-4xl mx-auto">
+        <div class="relative p-8 md:p-12 bg-white rounded-3xl border-2 border-stone-200 shadow-sm mb-16">
+            <div class="tape-effect !left-10 !rotate-[-10deg] !w-32 !bg-blue-100"></div>
+            <h2 class="text-4xl mb-6">Querido diario... ✨</h2>
+            <p class="text-2xl leading-relaxed mb-6">
+                Hoy estuve leyendo cosas increíbles. ¿Sabías que mis amigas las tortugas llevan en la Tierra más de 200 millones de años? ¡Son como pequeños dinosaurios con armadura! 🦖
+            </p>
+            <p class="text-2xl leading-relaxed">
+                Su caparazón no es solo una "casa", ¡es parte de su cuerpo! Es una maravilla de la naturaleza que las ha protegido a través de toda la historia. Aquí anoté mis tres cosas favoritas sobre ellas:
             </p>
         </div>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="chibi-card p-8 text-center bg-pink-50/50">
+                <div class="text-6xl mb-4 floating">🌸</div>
+                <h3 class="text-2xl font-bold mb-2">Abuelitas Sabias</h3>
+                <p class="text-xl">Viven muchísimos años. ¡Algunas han visto pasar siglos enteros desde su playa!</p>
+            </div>
+            <div class="chibi-card p-8 text-center bg-blue-50/50">
+                <div class="text-6xl mb-4 floating" style="animation-delay: 1s">🫧</div>
+                <h3 class="text-2xl font-bold mb-2">Súper Viajeras</h3>
+                <p class="text-xl">Usan el mapa magnético de la Tierra para no perderse nunca. ¡Mejor que mi GPS!</p>
+            </div>
+            <div class="chibi-card p-8 text-center bg-green-50/50">
+                <div class="text-6xl mb-4 floating" style="animation-delay: 2s">🍃</div>
+                <h3 class="text-2xl font-bold mb-2">Todo Terreno</h3>
+                <p class="text-xl">Están en el mar, en ríos y hasta en los desiertos más calurosos. ¡Son valientes!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax 1 -->
+    <div class="parallax-section parallax-1">
+        <div class="bg-white/90 p-6 rounded-2xl rotate-2 shadow-lg max-w-md mx-4 border-2 border-stone-100">
+            <p class="text-2xl italic text-center">"Nota mental: Son las nadadoras más elegantes que he visto jamás..."</p>
+        </div>
     </div>
 
-    <!-- Conservation Section -->
-    <section class="py-24 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="flex-1">
-                    <h2 class="text-4xl mb-8">¿Cómo podemos ayudar?</h2>
-                    <ul class="space-y-6">
-                        <li class="flex items-start gap-4">
-                            <span class="bg-emerald-100 text-emerald-700 p-2 rounded-lg font-bold">01</span>
-                            <p><strong class="block">Reduce el plástico:</strong> Las tortugas marinas suelen confundir las bolsas de plástico con medusas, su principal alimento.</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="bg-emerald-100 text-emerald-700 p-2 rounded-lg font-bold">02</span>
-                            <p><strong class="block">Respeta sus nidos:</strong> Si visitas playas de desove, mantén tu distancia y evita usar luces brillantes de noche.</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="bg-emerald-100 text-emerald-700 p-2 rounded-lg font-bold">03</span>
-                            <p><strong class="block">Apoya la conservación:</strong> Colabora con organizaciones que protegen santuarios y limpian los océanos.</p>
-                        </li>
-                    </ul>
+    <!-- Notas de campo: Especies -->
+    <section class="py-24 bg-[#f8f5e9]">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl text-center mb-16">Mis Dibujos y Notas 🎨</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Marine Chibi Card -->
+                <div class="chibi-card overflow-hidden bg-white">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=800" alt="Tortuga marina feliz" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-blue-400 text-white px-4 py-1 rounded-full text-lg">Nadadoras</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-3xl mb-4">Las del Mar (¡Mis favs!)</h3>
+                        <p class="text-xl mb-4">Tienen aletas largas para volar bajo el agua. Nunca pueden meter su cabecita en el caparazón, ¡siempre están alertas!</p>
+                        <div class="notebook-line"></div>
+                        <p class="text-sm italic text-stone-400">Observación: Son muy rápidas bajo el agua pero lentitas en la arena.</p>
+                    </div>
                 </div>
-                <div class="flex-1 relative">
-                    <div class="w-full aspect-square bg-emerald-50 rounded-full flex items-center justify-center floating overflow-hidden border-8 border-white shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" alt="Tortuga nadando" class="w-full h-full object-cover">
+
+                <!-- Land Chibi Card -->
+                <div class="chibi-card overflow-hidden bg-white">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1518467166778-b88f373ffec7?auto=format&fit=crop&q=80&w=800" alt="Tortuga terrestre" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-orange-400 text-white px-4 py-1 rounded-full text-lg">Caminantes</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-3xl mb-4">Las de Tierra</h3>
+                        <p class="text-xl mb-4">Sus patitas son gorditas como las de un elefante bebé. Comen plantitas y les encanta tomar el sol muy tranquilas.</p>
+                        <div class="notebook-line"></div>
+                        <p class="text-sm italic text-stone-400">Observación: Su caparazón es mucho más redondito, como una cúpula.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-stone-400 py-16 px-6 text-center">
-        <div class="max-w-xl mx-auto">
-            <h2 class="text-white text-3xl mb-4">Explora más</h2>
-            <p class="mb-8">Las tortugas nos enseñan que ir lento no significa no llegar. Sigamos aprendiendo de ellas.</p>
-            <div class="flex justify-center gap-6 mb-12">
-                <a href="#" class="hover:text-emerald-400 transition-colors">Instagram</a>
-                <a href="#" class="hover:text-emerald-400 transition-colors">Facebook</a>
-                <a href="#" class="hover:text-emerald-400 transition-colors">Twitter</a>
+    <!-- Parallax 2 -->
+    <div class="parallax-section parallax-2">
+        <div class="bg-yellow-100 p-10 rounded-[50px] shadow-2xl max-w-xl mx-4 border-4 border-white rotate-[-1deg]">
+            <h2 class="text-3xl mb-4">¡Importante! ⚠️</h2>
+            <p class="text-xl">Vi que muchas tortuguitas están tristes por el plástico en el mar. ¡Tenemos que hacer algo para que sigan viviendo otros 200 millones de años!</p>
+        </div>
+    </div>
+
+    <!-- Checklist final -->
+    <section class="py-24 px-6 max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl mb-12 italic">Misión de Alison: Salvar Tortugas 🎒</h2>
+        <div class="space-y-6 text-left inline-block">
+            <label class="flex items-center gap-4 text-2xl cursor-pointer">
+                <input type="checkbox" checked class="w-8 h-8 accent-emerald-500">
+                <span>Decir NO a los popotes y bolsas de plástico.</span>
+            </label>
+            <label class="flex items-center gap-4 text-2xl cursor-pointer">
+                <input type="checkbox" checked class="w-8 h-8 accent-emerald-500">
+                <span>Limpiar mi pedacito de playa cuando vaya.</span>
+            </label>
+            <label class="flex items-center gap-4 text-2xl cursor-pointer">
+                <input type="checkbox" checked class="w-8 h-8 accent-emerald-500">
+                <span>Contarle a todos lo asombrosas que son.</span>
+            </label>
+        </div>
+        <div class="mt-16 text-6xl floating">🎨✍️🍃</div>
+    </section>
+
+    <!-- Footer: Firma del Diario -->
+    <footer class="bg-stone-800 text-stone-200 py-20 px-6 text-center">
+        <div class="max-w-2xl mx-auto">
+            <div class="w-24 h-24 bg-white rounded-full mx-auto mb-6 flex items-center justify-center text-4xl shadow-xl">
+                🐢
             </div>
-            <p class="text-xs uppercase tracking-widest">&copy; 2025 El Mundo de las Tortugas • Creada por Alison Jocelyn Aguirre Guerra</p>
+            <h2 class="text-white text-3xl mb-2">Fin de la Entrada #01</h2>
+            <p class="text-xl mb-10 italic">"Paso a paso, se llega lejos..."</p>
+            
+            <div class="border-t border-stone-600 pt-10">
+                <p class="text-2xl font-bold text-emerald-400 mb-2">Alison Jocelyn Aguirre Guerra</p>
+                <p class="text-sm uppercase tracking-[0.3em]">Exploradora y Amiga de las Tortugas</p>
+            </div>
+            
+            <p class="mt-12 text-xs text-stone-500">© 2025 • Hecho con mucho cariño y notas adhesivas</p>
         </div>
     </footer>
 
-    <!-- Back to top button -->
-    <button id="topBtn" class="fixed bottom-8 right-8 bg-emerald-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-emerald-700 focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    <!-- Botón de subir flotante -->
+    <button id="topBtn" class="fixed bottom-8 right-8 bg-pink-400 text-white p-4 rounded-full shadow-xl opacity-0 transition-all duration-300 hover:scale-110 active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7" />
         </svg>
     </button>
 
     <script>
-        // Smooth scroll visibility for button
         const topBtn = document.getElementById('topBtn');
         window.onscroll = function() {
             if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
